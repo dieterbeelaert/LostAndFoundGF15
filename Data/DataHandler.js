@@ -32,5 +32,3 @@ function insertUser(id,token,lat,lon,callback){
 }
 module.exports.insertUser = insertUser;
 
-
-
