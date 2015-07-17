@@ -17,16 +17,6 @@ $(document).ready(function() {
         });
     });
 
-    var token = {
-        setToken : function() {
-            var token =  Math.random().toString(36).substr(2);
-            localStorage.setItem("token", token);
-        },
-
-        getToken : function() {
-            return localStorage.getItem("token");
-        }
-    };
 
     var client = {
         lat : "",
@@ -34,7 +24,7 @@ $(document).ready(function() {
 
         getLocation : function() {
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(locator.savePosition);
+                navigator.geolocation.getCurrentPosition(client.savePosition);
             } else {
                 error.innerHTML = "Geolocation is not supported by this browser.";
             }
@@ -45,29 +35,71 @@ $(document).ready(function() {
             client.lon = position.coords.longitude;
 
             console.log(client.lat + " " + client.lon);
+        },
+
+        setToken : function() {
+            var token =  Math.random().toString(36).substr(2);
+            localStorage.setItem("token", token);
+        },
+
+        getToken : function() {
+            return localStorage.getItem("token");
         }
     };
 
     var server = {
-        lat2 : "",
-        lon2 : "",
-        serverUrl : "",
+        lat : "",
+        lon : "",
+        serverUrl : "https://qtkwhvkusr.localtunnel.me",
 
-        getLocation : function() {
-            var lat = client.lat;
-            var lon = client.lon;
-
+        setLocation : function() {
             jQuery.ajax({
-                url: server.serverUrl,
+                url: server.serverUrl + "/connect/" + server.serverToken + "?token=" + client.getToken() + "&lat=" + client.lat + "&lon=" + client.lon,
                 type:"GET",
                 dataType: "json",
                 success: function(data) {
-                    //server.saveLocation(data);
+                    server.lat = data.lat;
+                    server.lon = data.lon;
+
+                    console.log(data);
                 },
                 error: function() {
                     alert("JSON fout");
                 }
             });
+        },
+
+        setToken : function() {
+            jQuery.ajax({
+                url: server.serverUrl + "/link/generate",
+                type:"GET",
+                dataType: "json",
+                success: function(data) {
+                    server.serverToken = data.id;
+                    server.uniqueUrl = data.uniqueLink;
+                    localStorage.setItem("ServerToken", data.id);
+                    localStorage.setItem("uniqueUrl", data.uniqueLink);
+                },
+                error: function() {
+                    alert("JSON fout");
+                }
+            });
+        },
+
+        getToken : function() {
+            return localStorage.getItem("ServerToken");
+        },
+
+        getLocationLon : function() {
+            return server.lon;
+        },
+
+        getLocationLat : function() {
+            return server.lat;
+        },
+
+        getLink : function() {
+            return localStorage.getItem("uniqueUrl");
         }
     };
 
@@ -110,9 +142,19 @@ $(document).ready(function() {
     });
 
     // Set token
-    if(token.getToken() == undefined) {
-        token.setToken();
+    if(client.getToken() == undefined) {
+        client.setToken();
     }
+    if(server.getToken() == undefined) {
+        server.setToken();
+    }
+
+    if(currentStep == step2) {
+
+    }
+
+    // Show unique link
+    $("#uniquelink").html(server.getToken());
 
     client.getLocation();
 });
