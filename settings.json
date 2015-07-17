@@ -1,9 +1,0 @@
-{
-    "dbName": "reputation",
-    "indexPage" : "../Views/index.ejs",
-    "port": 3000,
-    "dbHost":"localhost",
-    "dbUser": "root",
-    "dbPwd" : "",
-    "dbName": "lost"
-}

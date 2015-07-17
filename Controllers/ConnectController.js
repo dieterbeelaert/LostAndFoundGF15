@@ -4,6 +4,7 @@
 
 var Controller = require('./Controller.js');
 var DataHandler = require('../Data/DataHandler.js');
+var EventFinder = require('../Utils/EventFinder.js');
 
 function ConnectController(req,res,ctx){
     console.log('init connectController');
@@ -34,6 +35,8 @@ ConnectController.prototype.doUpdate = function(){
     var lat = self.prototype.ctx.getParam('lat');
     var lon = self.prototype.ctx.getParam('lon');
     DataHandler.updateStatus(id,token,lat,lon);
+    //return the status of the other user aswell when done
+    self.doStatus();
 }
 
 ConnectController.prototype.doStatus = function(){
@@ -63,6 +66,7 @@ ConnectController.prototype.onConnect = function(){
                     //insert and start to calculate the perfect point
                     DataHandler.insertUser(id, token, lat, lon, function () {
                         //calculate perfect location and insert int into database for records with this token
+                        EventFinder.getMidEvent()
                     });
                 } else {
                     console.log('not first connected');
