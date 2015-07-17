@@ -42,7 +42,7 @@ module.exports.insertUser = insertUser;
 
 function getStatus(id,token,callback){
     //gets the status of the other user
-    var query = 'select * from connection where id = ? and token != ?';
+    var query = 'select * from connection where id = ? and user_token != ?';
     db.query(query,[id,token],function(err,row,fields){
         if(!err){
             callback(row);
@@ -52,7 +52,7 @@ function getStatus(id,token,callback){
 module.exports.getStatus = getStatus;
 
 function updateStatus(id,token,lat,lon){
-    var query = 'update connection set lat = ? and lon = ? where id = ? and token = ?';
+    var query = 'update connection set lat = ? and lon = ? where id = ? and user_token = ?';
     db.query(query,[lat,lon,id,token],function(err,row,fields){
         if(err){
             console.log(err);

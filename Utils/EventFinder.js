@@ -8,6 +8,7 @@ var getMidEvent = function(lat1, lon1, lat2, lon2) {
 
     return location;
 }
+module.exports.getMidEvent = getMidEvent;
 
 var searchClosestLocation = function(latitude, longitude) {
     var oldDistance = 1000000;
