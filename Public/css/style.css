@@ -182,3 +182,31 @@ main a {
     display: block;
     padding-top: 70px;
 }
+
+#compass {
+    position: relative;
+
+    width: 200px;
+    height: 300px;
+
+    background: url("../img/arrow.png") no-repeat;
+
+    display: block;
+    margin: 0 auto;
+}
+.north, .south {
+    position: absolute;
+    left: 94px;
+    width: 12px;
+    height: 100px;
+}
+.north {
+    top: 0;
+    background: red;
+    text-align: center;
+    font-size: 11px;
+}
+.south {
+    top: 100px;
+    background: black;
+}
