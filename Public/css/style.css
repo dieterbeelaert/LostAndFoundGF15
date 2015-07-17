@@ -210,3 +210,17 @@ main a {
     top: 100px;
     background: black;
 }
+
+/* Footer */
+
+footer {
+    background-color: black; 
+}
+
+footer img {
+    display: block;
+    margin: auto;
+    width: 200px;
+    padding: 20px 0px;
+    text-align: center;
+}
