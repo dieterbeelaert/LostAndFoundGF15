@@ -30,6 +30,7 @@ LinkController.prototype.generate = function(){
     var self = this;
     var toReturn = {};
     var id = shortid.generate();
+    //don't use connect but another link to get connect call right....
     toReturn.uniqueLink = 'http://' + self.prototype.req.headers.host + '/connect/' + id,
     toReturn.id= id;
     self.prototype.returnJSON(toReturn);

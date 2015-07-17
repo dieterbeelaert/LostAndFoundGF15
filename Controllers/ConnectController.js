@@ -5,7 +5,6 @@
 var Controller = require('./Controller.js');
 var DataHandler = require('../Data/DataHandler.js');
 var EventFinder = require('../Utils/EventFinder.js');
-var Settings = require('../settings.json');
 
 function ConnectController(req,res,ctx){
     console.log('init connectController');
@@ -69,7 +68,6 @@ ConnectController.prototype.onConnect = function(){
                         //calculate perfect location and insert int into database for records with this token
                         EventFinder.getMidEvent()
                     });
-                    self.prototype.res.render(Settings.indexPage)
                 } else {
                     console.log('not first connected');
                     //just insert him into the database
