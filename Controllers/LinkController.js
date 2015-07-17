@@ -29,7 +29,9 @@ LinkController.prototype.doRequest = function(){
 LinkController.prototype.generate = function(){
     var self = this;
     var toReturn = {};
-    toReturn.uniqueLink = 'http://' + self.prototype.req.headers.host + '/connect/' + shortid.generate();
+    var id = shortid.generate();
+    toReturn.uniqueLink = 'http://' + self.prototype.req.headers.host + '/connect/' + id,
+    toReturn.id= id;
     self.prototype.returnJSON(toReturn);
 }
 

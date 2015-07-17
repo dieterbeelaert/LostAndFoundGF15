@@ -20,7 +20,13 @@ function isFirstConnected(id,callback){
 }
 module.exports.isFirstConnected = isFirstConnected;
 
-function
+function canConnect(id,callback){
+    var query = 'select count(*) as count from connection where id = ?';
+    db.query(query,[id],function(err,rows,fields){
+        callback(rows[0].count === 2 ? false: true);
+    });
+}
+module.exports.canConnect = canConnect;
 
 function insertUser(id,token,lat,lon,callback){
     var query = 'insert into connection(id,user_token,lat,lon,timestamp) values(?,?,?,?,now())';

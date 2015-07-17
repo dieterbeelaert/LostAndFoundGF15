@@ -37,20 +37,30 @@ ConnectController.prototype.doStatus = function(){
 ConnectController.prototype.onConnect = function(){
     var self = this;
     var id = self.prototype.ctx.routeObj.action
-    //check if it is the first or second one who connects
-    DataHandler.isFirstConnected(self.prototype.ctx.routeObj.action,function(firstConnected){
-        var token = self.prototype.ctx.getParam('token');
-        var lat = self.prototype.ctx.getParam('lat');
-        var lon = self.prototype.ctx.getParam('lon');
-        if(!firstConnected){
-           //insert and start to calculate the perfect point
-            DataHandler.insertUser(id,token,lat,lon,function(){
-                //calculate perfect location and insert int into database for records with this token
+    //can we connect or not?
+    DataHandler.canConnect(id,function(canConnect){
+        if(canConnect) {
+            console.log('can log in ...');
+            //check if it is the first or second one who connects
+            DataHandler.isFirstConnected(self.prototype.ctx.routeObj.action, function (firstConnected) {
+                var token = self.prototype.ctx.getParam('token');
+                var lat = self.prototype.ctx.getParam('lat');
+                var lon = self.prototype.ctx.getParam('lon');
+                if (!firstConnected) {
+                    console.log('first connected');
+                    //insert and start to calculate the perfect point
+                    DataHandler.insertUser(id, token, lat, lon, function () {
+                        //calculate perfect location and insert int into database for records with this token
+                    });
+                } else {
+                    console.log('not first connected');
+                    //just insert him into the database
+                    DataHandler.insertUser(id, token, lat, lon);
+                }
             });
-        }else{
-           //just insert him into the database
-            DataHandler.insertUser(id, token,lat,lon);
+        } else {
+            console.log('can not connect anymore');
         }
-    })
+    });
 }
 
