@@ -20,6 +20,8 @@ function isFirstConnected(id,callback){
 }
 module.exports.isFirstConnected = isFirstConnected;
 
+function
+
 function insertUser(id,token,lat,lon,callback){
     var query = 'insert into connection(id,user_token,lat,lon,timestamp) values(?,?,?,?,now())';
     db.query(query,[id,token,lat,lon],function(err,row,fields){
@@ -31,4 +33,5 @@ function insertUser(id,token,lat,lon,callback){
     });
 }
 module.exports.insertUser = insertUser;
+
 

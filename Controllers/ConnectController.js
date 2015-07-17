@@ -27,7 +27,7 @@ ConnectController.prototype.doRequest = function() {
 }
 
 ConnectController.prototype.doUpdate = function(){
-
+    
 }
 
 ConnectController.prototype.doStatus = function(){
