@@ -60,6 +60,7 @@ ConnectController.prototype.onConnect = function(){
             });
         } else {
             console.log('can not connect anymore');
+            self.prototype.res.end();
         }
     });
 }

@@ -23,7 +23,7 @@ module.exports.isFirstConnected = isFirstConnected;
 function canConnect(id,callback){
     var query = 'select count(*) as count from connection where id = ?';
     db.query(query,[id],function(err,rows,fields){
-        callback(rows[0].count === 2 ? false: true);
+        callback(rows[0].count < 2 ? true : false);
     });
 }
 module.exports.canConnect = canConnect;
