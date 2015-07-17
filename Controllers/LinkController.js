@@ -1,4 +1,3 @@
-//EXAMPLE ON HOW TO USE CONTROLLERS
 /**
  * Created by dietn on 19/12/14.
  */
@@ -18,7 +17,7 @@ LinkController.prototype.doRequest = function(){
     self.prototype.setResJSON(); //this controller always returns JSON
     console.log(self.prototype.ctx.routeObj);
     switch(self.prototype.ctx.routeObj.action){
-        case 'generate': self.getSpideredLinks();
+        case 'generate': self.generate();
             break;
         default:
             //just stop request
@@ -28,7 +27,10 @@ LinkController.prototype.doRequest = function(){
 }
 
 LinkController.prototype.generate = function(){
-
+    var self = this;
+    var toReturn = {};
+    toReturn.uniqueLink = 'http://' + self.prototype.req.headers.host + '/connect/' + shortid.generate();
+    self.prototype.returnJSON(toReturn);
 }
 
 
