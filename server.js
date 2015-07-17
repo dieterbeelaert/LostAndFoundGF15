@@ -10,6 +10,7 @@ var route = require('./Routing/RouteHandler.js');
 server.use(express.static('Public'));
 
 server.all('*',function(req,res){
+    res.header("Access-Control-Allow-Origin", "*");
     route.routeRequest(req,res);
 });
 

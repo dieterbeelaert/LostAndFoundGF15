@@ -27,11 +27,23 @@ ConnectController.prototype.doRequest = function() {
 }
 
 ConnectController.prototype.doUpdate = function(){
-
+    //update the data
+    var self = this;
+    var id = self.prototype.ctx.routeObj.action;
+    var token = self.prototype.ctx.getParam('token');
+    var lat = self.prototype.ctx.getParam('lat');
+    var lon = self.prototype.ctx.getParam('lon');
+    DataHandler.updateStatus(id,token,lat,lon);
 }
 
 ConnectController.prototype.doStatus = function(){
     //get data from database so that the users can refresh data
+    var self = this;
+    var id = self.prototype.ctx.routeObj.action;
+    var token = self.prototype.ctx.getParam('token');
+    DataHandler.getStatus(id,token,function(row){
+        self.prototype.returnJSON(row);
+    });
 }
 
 ConnectController.prototype.onConnect = function(){
