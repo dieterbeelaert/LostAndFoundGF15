@@ -1,0 +1,5 @@
+{
+    "dbName": "reputation",
+    "indexPage" : "../Views/index.ejs",
+    "port": 3000
+}

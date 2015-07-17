@@ -1,0 +1,7 @@
+{
+  "name": "LostAndFoundAtGF2015",
+  "dependencies": {
+    "express": ">= 1.2.0",
+    "ejs":"*"
+  }
+}
