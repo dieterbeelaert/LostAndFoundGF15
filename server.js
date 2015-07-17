@@ -7,7 +7,7 @@ var server = new express();
 var settings = require("./settings.json");
 var route = require('./Routing/RouteHandler.js');
 //serve static files
-server.use("/Public", express.static(__dirname + '/Public'));
+server.use(express.static('Public'));
 
 server.all('*',function(req,res){
     route.routeRequest(req,res);

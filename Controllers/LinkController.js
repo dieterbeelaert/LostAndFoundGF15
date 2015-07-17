@@ -3,6 +3,7 @@
  * Created by dietn on 19/12/14.
  */
 var Controller = require('./Controller.js');
+var shortid = require('shortid');
 
 
 /*Constructor*/
@@ -24,6 +25,10 @@ LinkController.prototype.doRequest = function(){
             self.prototype.res.end();
             break;
     }
+}
+
+LinkController.prototype.generate = function(){
+
 }
 
 
