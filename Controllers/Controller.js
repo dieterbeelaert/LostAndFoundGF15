@@ -11,7 +11,6 @@ function Controller(req,res,ctx){
     this.req = req;
     this.res = res;
     this.ctx = ctx;
-    this.db = DataHandler;
 }
 
 /*Needs to be overriden based on the action taht the controller is instantiated ....*/

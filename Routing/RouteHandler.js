@@ -15,6 +15,8 @@ function routeRequest(req,res){
 	    //example how to call a controller
            /*case "stats": controller = new Controller.StatsController(req,res,ctx);
                break;*/
+           case 'link': controller = new Controller.LinkController(req,res,ctx);
+               break;
            default: res.render(settings.indexPage);
                break;
        }
