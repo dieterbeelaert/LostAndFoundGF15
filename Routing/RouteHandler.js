@@ -17,6 +17,8 @@ function routeRequest(req,res){
                break;*/
            case 'link': controller = new Controller.LinkController(req,res,ctx);
                break;
+           case 'connect': controller = new Controller.ConnectController(req,res,ctx);
+               break;
            default: res.render(settings.indexPage);
                break;
        }

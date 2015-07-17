@@ -3,4 +3,5 @@
  */
 module.exports.Controller = require('./Controller.js');
 module.exports.LinkController = require('./LinkController.js');
+module.exports.ConnectController = require('./ConnectController.js');
 

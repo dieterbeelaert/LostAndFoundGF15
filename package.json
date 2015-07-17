@@ -3,6 +3,7 @@
   "dependencies": {
     "express": ">= 1.2.0",
     "ejs":"*",
-    "shortid": "*"
+    "shortid": "*",
+    "mysql":"*"
   }
 }
